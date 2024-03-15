@@ -13,6 +13,7 @@ from os import getenv
 
 
 if getenv("HBNB_TYPE_STORAGE") == "db":
+    # Defining association table (junction table)
     place_amenity = Table('place_amenity', Base.metadata,
                           Column('place_id',
                                  String(60),
@@ -54,10 +55,10 @@ class Place(BaseModel, Base):
 
     if getenv("HBNB_TYPE_STORAGE") == "db":
         reviews = relationship('Review', backref='place',
-                               cascade='all, delete-orphan')
+                               cascade='all, delete-orphan') #establishes a one to many relationship to Review Class
         amenities = relationship('Amenity',
                                  secondary='place_amenity',
-                                 backref='places', viewonly=False)
+                                 backref='places', viewonly=False) # establishes a many to many relationship with the current class
     else:
         @property
         def reviews(self):

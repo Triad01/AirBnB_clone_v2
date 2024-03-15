@@ -17,7 +17,7 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
 
     if getenv('HBNB_TYPE_STORAGE') == 'db':
-        cities = relationship('City', backref='state',
+        cities = relationship('City', backref='state', # establishig a one to many relationship with the city class, backref property indicates that every city instance would have a state attribute which points to the State class
                               cascade='all, delete-orphan')
     else:
         @property

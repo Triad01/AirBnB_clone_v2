@@ -27,7 +27,7 @@ class DBStorage():
                                               getenv('HBNB_MYSQL_PWD'),
                                               getenv('HBNB_MYSQL_HOST'),
                                               getenv('HBNB_MYSQL_DB')),
-                                      pool_pre_ping=True)
+                                      pool_pre_ping=True) # pre_ping helps to refresh connections before they are used during a query
         if getenv('HBNB_ENV') == 'test':
             Base.metadata.drop_all(bind=self.__engine)
 

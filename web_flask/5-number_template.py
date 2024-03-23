@@ -4,8 +4,7 @@ Script that starts a Flask web application:
 listening on 0.0.0.0, port 5000
 with Fifth routes
 """
-from flask import Flask, escape, request
-from flask import render_template
+from flask import Flask, render_template
 app = Flask(__name__)
 
 

@@ -11,6 +11,7 @@ env.hosts = ['54.90.16.59', '100.25.150.206']
 env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
 
+
 def do_deploy(archive_path):
     """distributes an archive to the web servers"""
     if exists(archive_path) is False:
@@ -28,8 +29,9 @@ def do_deploy(archive_path):
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
         return True
-    except:
+    except Exception as e:
         return False
+
 
 """
 def do_deploy(archive_path):
@@ -42,11 +44,13 @@ def do_deploy(archive_path):
 
         # Create target directory
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-        target_dir = '/data/web_static/releases/web_static_{}/'.format(timestamp)
+        target_dir = '/data/web_static/releases/web_static_{}/'.\
+                format(timestamp)
         run('sudo mkdir -p {}'.format(target_dir))
 
         # Uncompress archive
-        run('sudo tar -xzf /tmp/web_static_{}.tgz -C {}'.format(timestamp, target_dir))
+        run('sudo tar -xzf /tmp/web_static_{}.tgz -C {}'.\
+                format(timestamp, target_dir))
 
         # Check if source directory is empty
         result = run('ls -A {}web_static/'.format(target_dir), warn=True)

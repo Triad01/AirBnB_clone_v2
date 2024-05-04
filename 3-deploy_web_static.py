@@ -7,7 +7,7 @@ from web_static content folder
 from fabric.api import env, local, put, run
 from datetime import datetime
 from os.path import exists, isdir
-env.hosts = ['34.232.69.133', '54.209.193.30']
+env.hosts = ['54.90.16.59', '100.25.150.206']
 env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
 
